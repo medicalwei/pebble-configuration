@@ -21,11 +21,12 @@ $(function(){
 });
 
 $("#settings").submit(function(event){
-	var settings = {
-		white_on_black: $("#white_on_black").prop('checked'),
-		vibrate_on_disconnect: $("#vibrate_on_disconnect").prop('checked')
-	};
-	location.href = "pebblejs://close#" + JSON.stringify(settings);
+	var settings = JSON.stringify({
+		white_on_black: $("#white_on_black").prop('checked')?1:0,
+		vibrate_on_disconnect: $("#vibrate_on_disconnect").prop('checked')?1:0
+	});
+	window.localStorage.setItem(StorageName, settings);
+	location.href = "pebblejs://close#" + settings;
 	event.preventDefault();
 });
 

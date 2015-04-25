@@ -43,5 +43,6 @@ $("#settings").submit(function(event){
 });
 
 $("#cancelButton").click(function(event){
-	location.href = "pebblejs://close#{\"cancel\": true}";
+	var settings = JSON.stringify({cancel: true});
+	document.location = return_to + encodeURIComponent(settings);
 });

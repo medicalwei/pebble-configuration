@@ -38,7 +38,7 @@ $("#settings").submit(function(event){
 	});
 	window.localStorage.setItem(StorageName, settings);
 
-	document.location = return_to + encodeURIComponent(some_settings);
+	document.location = return_to + encodeURIComponent(settings);
 	event.preventDefault();
 });
 

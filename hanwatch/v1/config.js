@@ -8,6 +8,7 @@ var DefaultSettings = {
 	white_on_black: false,
 	vibrate_on_disconnect: true
 };
+var return_to = "pebblejs://close#";
 
 $(function(){
 	var settings = window.localStorage.getItem(StorageName);
@@ -18,6 +19,16 @@ $(function(){
 	}
 	$("#white_on_black").prop('checked', settings.white_on_black);
 	$("#vibrate_on_disconnect").prop('checked', settings.vibrate_on_disconnect);
+
+	var query = location.search.substring(1);
+	var vars = query.split('&');
+	for (var i = 0; i < vars.length; i++) {
+		var pair = vars[i].split('=');
+		if (pair[0] === "return_to"){
+			return_to = decodeURIComponent(pair[1]);
+			break;
+		}
+	}
 });
 
 $("#settings").submit(function(event){
@@ -26,7 +37,8 @@ $("#settings").submit(function(event){
 		vibrate_on_disconnect: $("#vibrate_on_disconnect").prop('checked')?1:0
 	});
 	window.localStorage.setItem(StorageName, settings);
-	location.href = "pebblejs://close#" + settings;
+
+	document.location = return_to + encodeURIComponent(some_settings);
 	event.preventDefault();
 });
 

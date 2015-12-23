@@ -32,13 +32,17 @@ $(function(){
 });
 
 $("#settings").submit(function(event){
-	var settings = JSON.stringify({
+	var settings = {
 		white_on_black: $("#white_on_black").prop('checked')?1:0,
 		vibrate_on_disconnect: $("#vibrate_on_disconnect").prop('checked')?1:0
-	});
-	window.localStorage.setItem(StorageName, settings);
+	};
+	window.localStorage.setItem(StorageName, JSON.stringify(settings));
 
-	document.location = return_to + encodeURIComponent(settings);
+  var watchSettings = {
+    "0": settings.white_on_black,
+    "1": settings.vibrate_on_disconnect
+  }
+	document.location = return_to + encodeURIComponent(JSON.stringify(watchSettings));
 	event.preventDefault();
 });
 

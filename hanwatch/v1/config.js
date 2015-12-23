@@ -39,8 +39,8 @@ $("#settings").submit(function(event){
 	window.localStorage.setItem(StorageName, JSON.stringify(settings));
 
   var watchSettings = {
-    "0": settings.white_on_black,
-    "1": settings.vibrate_on_disconnect
+    "1": settings.white_on_black,
+    "2": settings.vibrate_on_disconnect
   }
 	document.location = return_to + encodeURIComponent(JSON.stringify(watchSettings));
 	event.preventDefault();
